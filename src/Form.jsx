@@ -26,6 +26,14 @@ function Form() {
     "rose",
   ];
 
+   const handleSubmit = () => {
+    console.log("form submitted");
+  };
+
+  const handleChange = (e) => {
+   setFormData(e.target.value)
+  };
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -125,6 +133,10 @@ function Form() {
           placeholder="Write additional notes..."
           cols="100"
         ></textarea>
+      </div>
+      <div className="form-btns">
+        <button type="submit">Submit</button>
+        <button type="button">Reset</button>
       </div>
     </form>
   );

@@ -1,18 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function Form() {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    age: "",
-    isEmployed: false,
-    favoriteColor: "",
-    sauces: [],
-    bestStooge: "",
-    notes: "",
-  });
-
+function Form({ formData, setFormData, handleFormSubmit }) {
   const colors = [
     "red",
     "orange",
@@ -26,17 +15,31 @@ function Form() {
     "rose",
   ];
 
-   const handleSubmit = () => {
-    console.log("form submitted");
-  };
-
   const handleChange = (e) => {
-   setFormData(e.target.value)
-  };
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => {
+      if (type === "checkbox" && name === "isEmployed") {
+        return { ...prev, [name]: checked };
+      }
 
+      if (type === "checkbox") {
+        const updatedSauces = checked
+          ? [...prev.sauces, value]
+          : prev.sauces.filter((sauce) => sauce !== value);
+
+        return { ...prev, sauces: updatedSauces };
+      }
+
+      if (type === "radio") {
+        return { ...prev, [name]: value };
+      }
+
+      return { ...prev, [name]: value };
+    });
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleFormSubmit}>
       <div className="input first-name">
         <label htmlFor="first-name">First Name</label>
         <input
@@ -71,20 +74,25 @@ function Form() {
         />
       </div>
       <div className="input employment">
-        <label htmlFor="is-employed">Employed</label>
+        <label htmlFor="isEmployed">Employed</label>
         <input
           type="checkbox"
           id="employment"
-          value={formData.isEmployed}
+          checked={formData.isEmployed}
           onChange={handleChange}
-          name="is-employed"
+          name="isEmployed"
         />
       </div>
       <div className="input favorite-color">
-        <label htmlFor="favorite-color">Favorite Color</label>
-        <select name="color-options" id="color-options">
+        <label htmlFor="favoriteColor">Favorite Color</label>
+        <select
+          name="favoriteColor"
+          id="favoriteColor"
+          value={formData.favoriteColor}
+          onChange={handleChange}
+        >
           {colors.map((color, index) => (
-            <option value={color} key={index} onChange={handleChange}>
+            <option value={color} key={index}>
               {color}
             </option>
           ))}
@@ -93,15 +101,31 @@ function Form() {
       <div className="input sauces-choice">
         <label htmlFor="sauces">Sauces</label>
         <div className="sauces-list" id="sauces">
-          <input type="checkbox" id="ketchup" value="ketchup" name="ketchup" />
+          <input
+            type="checkbox"
+            id="ketchup"
+            value="ketchup"
+            name="ketchup"
+            onChange={handleChange}
+            checked={formData.sauces.includes("ketchup")}
+          />
           <label htmlFor="ketchup">Ketchup</label>
-          <input type="checkbox" id="mustard" value="mustard" name="mustard" />
+          <input
+            type="checkbox"
+            id="mustard"
+            value="mustard"
+            name="mustard"
+            onChange={handleChange}
+            checked={formData.sauces.includes("mustard")}
+          />
           <label htmlFor="mustard">Mustard</label>
           <input
             type="checkbox"
             id="mayonnaise"
             value="mayonnaise"
             name="mayonnaise"
+            onChange={handleChange}
+            checked={formData.sauces.includes("mayonnaise")}
           />
           <label htmlFor="mayonnaise">Mayonnaise</label>
           <input
@@ -109,6 +133,8 @@ function Form() {
             id="guacamole"
             value="guacamole"
             name="guacamole"
+            onChange={handleChange}
+            checked={formData.sauces.includes("guacamole")}
           />
           <label htmlFor="guacamole">Guacamole</label>
         </div>
@@ -116,18 +142,37 @@ function Form() {
       <div className="input stooge">
         <label htmlFor="stooge">Best Stooge</label>
         <div className="stooge-list" id="stooge">
-          <input type="radio" name="stooge-option" id="larry" />
+          <input
+            type="radio"
+            name="bestStooge"
+            id="larry"
+            value="Larry"
+            onChange={handleChange}
+            checked={formData.bestStooge === "Larry"}
+          />
           <label htmlFor="larry">Larry</label>
-          <input type="radio" name="stooge-option" />
+          <input
+            type="radio"
+            name="bestStooge"
+            value="Moe"
+            onChange={handleChange}
+            checked={formData.bestStooge === "Moe"}
+          />
           <label htmlFor="moe">Moe</label>
-          <input type="radio" name="stooge-option" />
+          <input
+            type="radio"
+            name="bestStooge"
+            value="Curly"
+            onChange={handleChange}
+            checked={formData.bestStooge === "Curly"}
+          />
           <label htmlFor="curly">Curly</label>
         </div>
       </div>
       <div className="input notes">
         <textarea
-          name="user-notes"
-          id="user-notes"
+          name="notes"
+          id="notes"
           value={formData.notes}
           onChange={handleChange}
           placeholder="Write additional notes..."

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "./App.css";
-import Form from "./Form";
+import FormParent from "./FormParent";
+
 
 function App() {
-  return <Form />
+  return <FormParent />
 }
 
 export default App;

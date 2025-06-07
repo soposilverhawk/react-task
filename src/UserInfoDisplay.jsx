@@ -1,7 +1,6 @@
 import React from "react";
 
 function UserInfoDisplay({ formData }) {
-  console.log(formData.sauces);
   return (
     <div className="user-info-display">
       <pre>

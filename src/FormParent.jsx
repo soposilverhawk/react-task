@@ -21,7 +21,7 @@ function FormParent() {
     e.preventDefault();
     setIsSubmitted(true);
   };
-  
+
   const handleFormReset = () => {
     setFormData({
       firstName: "",
@@ -38,7 +38,7 @@ function FormParent() {
   };
 
   return (
-    <div>
+    <div className="form-parent">
       <Form
         formData={formData}
         setFormData={setFormData}

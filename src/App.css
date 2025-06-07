@@ -1,0 +1,67 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.form-parent {
+ padding: 10px 30px 30px 30px;
+ box-shadow: 10px 0px 5px lightgray;
+}
+form {
+  height: 500px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.input {
+  display: flex;
+  justify-content: space-between;
+}
+.input label {
+  width: 20%;
+}
+.first-name input,
+.last-name input,
+.age input,
+.employment input,
+select,
+.input div {
+  width: 70%;
+}
+.sauces-list,
+.stooge-list {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+textarea {
+  padding: 10px;
+}
+.form-btns {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+button {
+  cursor: pointer;
+  padding: 5px 15px;
+  border-radius: 3px;
+  border: 1px solid gray;
+}
+button:focus {
+  background-color: #5C89BA;
+  color: #fff;
+}
+.user-info-display {
+  background-color: lightgray;
+  width: 500px;
+  padding: 10px;
+}

@@ -1,20 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function Form({ formData, setFormData, handleFormSubmit, handleFormReset }) {
-  const colors = [
-    "red",
-    "orange",
-    "yellow",
-    "chartreuse",
-    "green",
-    "cyan",
-    "blue",
-    "violet",
-    "magenta",
-    "rose",
-  ];
-
+function Form({ formData, setFormData, handleFormSubmit, handleFormReset, optionColors }) {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => {
@@ -91,7 +78,7 @@ function Form({ formData, setFormData, handleFormSubmit, handleFormReset }) {
           value={formData.favoriteColor}
           onChange={handleChange}
         >
-          {colors.map((color, index) => (
+          {optionColors.map((color, index) => (
             <option value={color} key={index}>
               {color}
             </option>

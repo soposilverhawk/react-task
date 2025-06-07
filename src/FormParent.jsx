@@ -4,12 +4,25 @@ import UserInfoDisplay from "./UserInfoDisplay";
 import Form from "./Form";
 
 function FormParent() {
+  const colors = [
+    "red",
+    "orange",
+    "yellow",
+    "chartreuse",
+    "green",
+    "cyan",
+    "blue",
+    "violet",
+    "magenta",
+    "rose",
+  ];
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     age: "",
     isEmployed: false,
-    favoriteColor: "",
+    favoriteColor: colors[0] || "",
     sauces: [],
     bestStooge: "",
     notes: "",
@@ -28,7 +41,7 @@ function FormParent() {
       lastName: "",
       age: "",
       isEmployed: false,
-      favoriteColor: "",
+      favoriteColor: "red",
       sauces: [],
       bestStooge: "",
       notes: "",
@@ -44,6 +57,7 @@ function FormParent() {
         setFormData={setFormData}
         handleFormSubmit={handleFormSubmit}
         handleFormReset={handleFormReset}
+        optionColors={colors}
       />
       {isSbumitted && <UserInfoDisplay formData={formData} />}
     </div>

@@ -21,12 +21,29 @@ function FormParent() {
     e.preventDefault();
     setIsSubmitted(true);
   };
+  
+  const handleFormReset = () => {
+    setFormData({
+      firstName: "",
+      lastName: "",
+      age: "",
+      isEmployed: false,
+      favoriteColor: "",
+      sauces: [],
+      bestStooge: "",
+      notes: "",
+    });
+
+    setIsSubmitted(false);
+  };
+
   return (
     <div>
       <Form
         formData={formData}
         setFormData={setFormData}
         handleFormSubmit={handleFormSubmit}
+        handleFormReset={handleFormReset}
       />
       {isSbumitted && <UserInfoDisplay formData={formData} />}
     </div>

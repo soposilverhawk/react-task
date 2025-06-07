@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function Form({ formData, setFormData, handleFormSubmit }) {
+function Form({ formData, setFormData, handleFormSubmit, handleFormReset }) {
   const colors = [
     "red",
     "orange",
@@ -181,7 +181,7 @@ function Form({ formData, setFormData, handleFormSubmit }) {
       </div>
       <div className="form-btns">
         <button type="submit">Submit</button>
-        <button type="button">Reset</button>
+        <button type="button" onClick={handleFormReset}>Reset</button>
       </div>
     </form>
   );

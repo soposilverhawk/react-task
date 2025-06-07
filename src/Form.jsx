@@ -13,6 +13,7 @@ function Form({ formData, setFormData, handleFormSubmit, handleFormReset, option
         const updatedSauces = checked
           ? [...prev.sauces, value]
           : prev.sauces.filter((sauce) => sauce !== value);
+          // 2nd line removes the value in case the checkbox is not checked
 
         return { ...prev, sauces: updatedSauces };
       }

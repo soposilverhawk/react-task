@@ -28,14 +28,11 @@ function FormParent() {
     notes: "",
   });
 
+  const [submittedData, setSubmittedData] = useState(null);
+
   const [isSbumitted, setIsSubmitted] = useState(false);
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitted(true);
-  };
-
-  const handleFormReset = () => {
+  const clearFormData = () => {
     setFormData({
       firstName: "",
       lastName: "",
@@ -46,7 +43,18 @@ function FormParent() {
       bestStooge: "",
       notes: "",
     });
+  };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setSubmittedData(formData);
+    setIsSubmitted(true);
+    clearFormData();
+    console.log(submittedData)
+  };
+
+  const handleFormReset = () => {
+    clearFormData();
     setIsSubmitted(false);
   };
 
@@ -55,11 +63,12 @@ function FormParent() {
       <Form
         formData={formData}
         setFormData={setFormData}
+        submittedData={submittedData}
         handleFormSubmit={handleFormSubmit}
         handleFormReset={handleFormReset}
         optionColors={colors}
       />
-      {isSbumitted && <UserInfoDisplay formData={formData} />}
+      {isSbumitted && <UserInfoDisplay submittedData={submittedData} />}
     </div>
   );
 }

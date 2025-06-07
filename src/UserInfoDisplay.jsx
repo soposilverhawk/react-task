@@ -1,11 +1,9 @@
 import React from "react";
 
-function UserInfoDisplay({ formData }) {
+function UserInfoDisplay({ submittedData }) {
   return (
     <div className="user-info-display">
-      <pre>
-        {JSON.stringify(formData, null, 2)}
-      </pre>
+      <pre>{JSON.stringify(submittedData, null, 2)}</pre>
     </div>
   );
 }
